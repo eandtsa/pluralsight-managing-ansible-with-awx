@@ -1,0 +1,16 @@
+---
+- name: Install and enable OpenSSH Server on Ubuntu
+  hosts: all
+  become: true
+
+  tasks:
+    - name: Install OpenSSH Server package
+      ansible.builtin.package:
+        name: openssh-server
+        state: present
+
+    - name: Enable and start SSH service
+      ansible.builtin.service:
+        name: ssh
+        enabled: true    # starts automatically after reboot
+        state: started   # starts now
